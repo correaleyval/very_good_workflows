@@ -1,0 +1,35 @@
+name: Flutter web github pages deploy
+
+on: [pull_request, push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+
+      - name: Install dependencies
+        run: |
+          flutter pub get
+
+      - name: Build web application [development]
+        run: |
+          flutter build web --target lib/main_development.dart
+
+      # Deploy web in web branch for gh pages
+      - run: git config user.name github-actions
+        shell: bash
+
+      - run: git config user.email github-actions@github.com
+        shell: bash
+
+      - run: git --work-tree build/web add --all
+        shell: bash
+
+      - run: git commit -m "Automatic deployment by github-actions"
+        shell: bash
+
+      - run: git push origin HEAD:web --force
+        shell: bash
