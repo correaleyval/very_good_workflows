@@ -1,0 +1,33 @@
+name: Flutter release workflow
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+
+      - name: Install dependencies
+        run: |
+          flutter pub get
+
+      - name: Build android application [development]
+        run: |
+          flutter build apk --flavor development --target lib/main_development.dart --target-platform=android-arm
+
+      - name: Build android application [production]
+        run: |
+          flutter build apk --flavor production --target lib/main_production.dart --target-platform=android-arm
+
+      - name: Release artifacts
+        uses: ncipollo/release-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: |
+            build/app/outputs/flutter-apk/app-development-release.apk
+            build/app/outputs/flutter-apk/app-production-release.apk
