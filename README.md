@@ -10,11 +10,15 @@ Developed with 💙 by [Very Good Ventures][very_good_ventures_link] 🦄
 
 ---
 
-Reusable [GitHub Workflows][github_workflows_link] used at [Very Good Ventures][very_good_ventures_link] 🦄
+Reusable [GitHub workflows][github_workflows_link] used internally at [Very Good Ventures][very_good_ventures_link].
 
-## Quick Start
+## Documentation 📝
 
-To get started add very good workflows to an existing GitHub workflow:
+For official documentation, please visit https://workflows.vgv.dev.
+
+## Quick Start 🚀
+
+To get started, add very good workflows to an existing GitHub workflow:
 
 ```yaml
 # A reusable workflow for Dart packages
@@ -22,110 +26,30 @@ uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@
 
 # A reusable workflow for Flutter packages
 uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
+
+# A reusable workflow for ensuring commits are semantic
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
+
+# A reusable workflow for verifying package scores on pub.dev
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/pana.yml@v1
+
+# A reusable workflow for running a spell check
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/spell_check.yml@v1
+
+# A reusable workflow for publishing Flutter packages
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_pub_publish.yml@v1
+
+# A reusable workflow for publishing Dart packages
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_pub_publish.yml@v1
+
+# A reusable workflow for publishing Mason bricks
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/mason_publish.yml@v1
+
+# A reusable workflow to keep track of the rights and restrictions external dependencies might impose on Dart or Flutter projects
+uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/license_check.yml@v1
 ```
 
-## Dart Package Workflow
-
-### Steps
-
-The Dart package workflow consists of the following steps:
-
-1. Install Dependencies
-2. Format
-3. Analyze
-4. Run tests
-5. Check Code Coverage
-
-### Inputs
-
-#### `coverage_excludes`
-
-**Optional** List of paths to exclude from the coverage report, separated by an empty space. Supports `globs` to describe file patterns.
-
-**Default** `""`
-
-#### `dart_sdk`
-
-**Optional** Which Dart SDK version to use. It can be a version (e.g. `2.12.0`) or a channel (e.g. `stable`):
-
-**Default** `"stable"`
-
-#### `working_directory`
-
-**Optional** The path to the root of the Dart package.
-
-**Default** `"."`
-
-### Example Usage
-
-```yaml
-name: My Dart Workflow
-
-on: pull_request
-
-jobs:
-  build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/dart_package.yml@v1
-    with:
-      coverage_excludes: "*.g.dart"
-      dart_sdk: "stable"
-      working_directory: "examples/my_dart_package"
-```
-
-## Flutter Package Workflow
-
-### Steps
-
-The Flutter package workflow consists of the following steps:
-
-1. Install Dependencies
-2. Format
-3. Analyze
-4. Run tests
-5. Check Code Coverage
-
-### Inputs
-
-#### `coverage_excludes`
-
-**Optional** List of paths to exclude from the coverage report, separated by an empty space. Supports `globs` to describe file patterns.
-
-**Default** `""`
-
-#### `flutter_channel`
-
-**Optional** The Flutter release channel to use (e.g. `stable`).
-
-**Default** `"stable"`
-
-#### `flutter_version`
-
-**Optional** The Flutter SDK version to use (e.g. `2.8.1`).
-
-**Default** `""`
-
-#### `working_directory`
-
-**Optional** The path to the root of the Flutter package.
-
-**Default** `"."`
-
-### Example Usage
-
-```yaml
-name: My Flutter Workflow
-
-on: pull_request
-
-jobs:
-  build:
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
-    with:
-      coverage_excludes: "*.g.dart"
-      flutter_channel: "stable"
-      flutter_version: "2.8.1"
-      working_directory: "examples/my_flutter_package"
-```
+For configuration details, check out our [official docs][workflows_docs].
 
 [ci_badge]: https://github.com/VeryGoodOpenSource/very_good_workflows/actions/workflows/ci.yml/badge.svg
 [ci_link]: https://github.com/VeryGoodOpenSource/very_good_workflows/actions
@@ -137,3 +61,4 @@ jobs:
 [very_good_ventures_link_dark]: https://verygood.ventures#gh-dark-mode-only
 [very_good_ventures_link_light]: https://verygood.ventures#gh-light-mode-only
 [very_good_ventures_link]: https://verygood.ventures
+[workflows_docs]: https://workflows.vgv.dev
